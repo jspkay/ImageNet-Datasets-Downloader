@@ -20,7 +20,7 @@ parser.add_argument('-data_root', default='' , type=str)
 parser.add_argument('-use_class_list', default=False,type=lambda x: (str(x).lower() == 'true'))
 parser.add_argument('-class_list', default=[], nargs='*')
 parser.add_argument('-debug', default=False,type=lambda x: (str(x).lower() == 'true'))
-praser.add_argument('-random_seed', default=None)
+parser.add_argument('-random_seed', default=None)
 
 parser.add_argument('-multiprocessing_workers', default = 8, type=int)
 
