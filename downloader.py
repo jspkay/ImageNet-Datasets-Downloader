@@ -20,6 +20,7 @@ parser.add_argument('-data_root', default='' , type=str)
 parser.add_argument('-use_class_list', default=False,type=lambda x: (str(x).lower() == 'true'))
 parser.add_argument('-class_list', default=[], nargs='*')
 parser.add_argument('-debug', default=False,type=lambda x: (str(x).lower() == 'true'))
+praser.add_argument('-random_seed', default=None)
 
 parser.add_argument('-multiprocessing_workers', default = 8, type=int)
 
@@ -50,6 +51,9 @@ with open(class_info_json_filepath) as class_info_json_f:
     class_info_dict = json.load(class_info_json_f)
 
 classes_to_scrape = []
+
+if args.random_seed != None:
+    np.random.seed(args.random_seed)
 
 if args.use_class_list == True:
    for item in args.class_list:
