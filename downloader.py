@@ -53,7 +53,12 @@ with open(class_info_json_filepath) as class_info_json_f:
 classes_to_scrape = []
 
 if args.random_seed != None:
-    np.random.seed(args.random_seed)
+    try:
+        s = int(args.random_seed)
+    except:
+        print("Wrong seed!")
+        exit()
+    np.random.seed(s)
 
 if args.use_class_list == True:
    for item in args.class_list:
