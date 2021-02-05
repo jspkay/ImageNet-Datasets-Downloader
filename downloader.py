@@ -21,6 +21,7 @@ parser.add_argument('-use_class_list', default=False,type=lambda x: (str(x).lowe
 parser.add_argument('-class_list', default=[], nargs='*')
 parser.add_argument('-debug', default=False,type=lambda x: (str(x).lower() == 'true'))
 parser.add_argument('-random_seed', default=None)
+parser.add_argument('-one_folder', default=False)
 
 parser.add_argument('-multiprocessing_workers', default = 8, type=int)
 
@@ -332,9 +333,13 @@ for class_wnid in classes_to_scrape:
     time.sleep(0.05)
     resp = requests.get(url_urls)
 
-    class_folder = os.path.join(imagenet_images_folder, class_name)
-    if not os.path.exists(class_folder):
-        os.mkdir(class_folder)
+    if args.one_folder is not None:
+        if args.one_folder == True:
+            class_folder = imagenet_images_folder
+    else:
+        class_folder = os.path.join(imagenet_images_folder, class_name)
+        if not os.path.exists(class_folder):
+            os.mkdir(class_folder)
 
     class_images.value = 0
 
