@@ -313,10 +313,12 @@ def get_image(img_url):
     if os.path.exists(img_file_path):
         print("file exists already!")
         return finish('failure')
-                   
-    with open(img_file_path, 'wb') as img_f:
-        img_f.write(img_resp.content)
 
+    img_f = open(img_file_path, 'wb')
+    try:
+        print(f"writing {img_file_path}")
+        img_f.write(img_resp.content)
+        
         with lock:
             class_images.value += 1
 
@@ -326,6 +328,9 @@ def get_image(img_url):
         print_stats('all', logging.debug)
 
         return finish('success')
+                   
+    except:
+        print("Error in writing!")
 
 
 for class_wnid in classes_to_scrape:
