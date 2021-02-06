@@ -311,7 +311,7 @@ def get_image(img_url):
     logging.debug(f'Saving image in {img_file_path}')
 
     if os.path.exists(img_file_path):
-        print("file exist already!")
+        print("file exists already!")
         return finish('failure')
                    
     with open(img_file_path, 'wb') as img_f:
