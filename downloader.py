@@ -311,12 +311,11 @@ def get_image(img_url):
     logging.debug(f'Saving image in {img_file_path}')
 
     if os.path.exists(img_file_path):
-        print("file exists already!")
+       # print("file exists already!")
         return finish('failure')
 
     img_f = open(img_file_path, 'wb')
     try:
-        print(f"writing {img_file_path}")
         img_f.write(img_resp.content)
         
         with lock:
@@ -330,9 +329,10 @@ def get_image(img_url):
         return finish('success')
                    
     except:
-        print("Error in writing!")
+      pass
 
 
+print(f"Classes to scrape: {len(classes_to_scrape)}")
 for class_wnid in classes_to_scrape:
 
     class_name = class_info_dict[class_wnid]["class_name"]
