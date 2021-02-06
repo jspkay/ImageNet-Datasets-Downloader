@@ -310,6 +310,10 @@ def get_image(img_url):
     img_file_path = os.path.join(class_folder, img_name)
     logging.debug(f'Saving image in {img_file_path}')
 
+    if os.exists(img_file_path):
+        print("file exist already!")
+        return finish('failure')
+                   
     with open(img_file_path, 'wb') as img_f:
         img_f.write(img_resp.content)
 
